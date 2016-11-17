@@ -10,6 +10,8 @@
 #include "type.h"
 #include <stdio.h>
 
+extern struct type* return_type;
+
 struct decl {
 	char* name;
 	struct type* type;

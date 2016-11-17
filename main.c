@@ -12,6 +12,7 @@ extern FILE* yyin;
 int resolve_failed;
 int resolve_print;
 int typecheck_failed;
+struct type* return_type;
 
 int main( int argc, char* argv[] ){
 	if( argc != 3 || ( strcmp( argv[1], "-print" ) && strcmp( argv[1], "-resolve" ) && strcmp(argv[1], "-typecheck" ) ) ){

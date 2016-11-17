@@ -56,19 +56,24 @@ void decl_resolve( struct decl* d ){
 }
 
 void decl_typecheck( struct decl* d ){
-	struct type* expr_type;
+	struct type* t;
 	if( !d ) return;
-	expr_type = expr_typecheck( d->value );
-	if( !type_equal( d->type, expr_type ) ){
-		printf( "type error: cannot assign " );
-		type_print( expr_type );
-		printf( " (" );
-		expr_print( d->value );
-		printf( ") to " );
-		type_print( d->type );
-		printf( " (%s)\n", d->name );
-		typecheck_failed = 1;
+	if( d->value ){
+		t = expr_typecheck( d->value );
+		if( !type_equal( d->type, t ) ){
+			printf( "type error: cannot assign " );
+			type_print( t );
+			printf( " (" );
+			expr_print( d->value );
+			printf( ") to " );
+			type_print( d->type );
+			printf( " (%s)\n", d->name );
+			typecheck_failed = 1;
+		}
 	}
-	//stmt_typecheck( d->code );
+	if( d->code ){
+		return_type = scope_lookup( d->name )->type->subtype;
+		stmt_typecheck( d->code );
+	}
 	decl_typecheck( d->next );
 }

@@ -110,3 +110,53 @@ void stmt_resolve( struct stmt* s ){
 	scope_leave();
 	stmt_resolve( s->next );
 }
+
+void stmt_typecheck( struct stmt* s ){
+	struct type* t;
+	if( !s ) return;
+	switch( s->kind ){
+		case STMT_DECL:
+			decl_typecheck( s->decl );
+			break;
+		case STMT_EXPR:
+		case STMT_PRINT:
+			expr_typecheck( s->expr );
+			break;
+		case STMT_IF_ELSE:
+			t = expr_typecheck( s->expr );
+			if( t->kind != TYPE_BOOLEAN ){
+				printf( "type error: expression (" );
+				expr_print( s->expr );
+				printf( ") in if must be boolean, not " );
+				type_print( t );
+				printf( "\n" );
+				typecheck_failed = 1;
+			}
+			stmt_typecheck( s->body );
+			stmt_typecheck( s->else_body );
+			break;
+		case STMT_FOR:
+			expr_typecheck( s->init_expr );
+			expr_typecheck( s->expr );
+			expr_typecheck( s->next_expr );
+			stmt_typecheck( s->body );
+			break;
+		case STMT_RETURN:
+			t = expr_typecheck( s->expr );
+			if( !type_equal( t, return_type ) ){
+				printf( "type error: return of " );
+				type_print( t );
+				printf( " (" );
+				expr_print( s->expr );
+				printf( ") does not match the funciton return type of " );
+				type_print( return_type );
+				printf( "\n" );
+				typecheck_failed = 1;
+			}
+			break;
+		case STMT_BLOCK:
+			stmt_typecheck( s->body );
+			break;
+	}
+	stmt_typecheck( s->next );
+}

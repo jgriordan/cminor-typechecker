@@ -1,0 +1,7 @@
+// test unmatching return type
+a: integer;
+f: function integer(b:integer) = {
+	a = b;
+	c: boolean = false;
+	return c;
+}

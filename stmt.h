@@ -6,6 +6,8 @@
 
 #include "decl.h"
 
+extern struct type* return_type;
+
 typedef enum {
 	STMT_DECL,
 	STMT_EXPR,
@@ -32,5 +34,6 @@ struct stmt* stmt_create( stmt_kind_t kind, struct decl* d, struct expr* init_ex
 void stmt_indent( int indent );
 void stmt_print( struct stmt* s, int indent );
 void stmt_resolve( struct stmt* s );
+void stmt_typecheck( struct stmt* s );
 
 #endif

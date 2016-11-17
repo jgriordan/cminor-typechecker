@@ -47,6 +47,8 @@ struct type* type_copy( struct type* t ){
 }
 
 int type_equal( struct type* a, struct type* b ){
+	if( !a && !b ) return 1;
+	if( !a || !b ) return 0;
 	if( a->kind == TYPE_BOOLEAN || a->kind == TYPE_CHARACTER || a->kind == TYPE_INTEGER || a->kind == TYPE_STRING || a->kind == TYPE_VOID )
 		return a->kind == b->kind;
 	else if( a->kind == TYPE_ARRAY && b->kind == TYPE_ARRAY )
