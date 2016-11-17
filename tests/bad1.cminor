@@ -1,0 +1,4 @@
+// test an undeclared variable
+f:function void(c:char) = {
+	c = undefinedChar;
+}
