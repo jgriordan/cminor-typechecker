@@ -160,7 +160,17 @@ struct type* expr_typecheck( struct expr* e ){
 	rt = expr_typecheck( e->right );
 	switch( e->kind ){
 		case EXPR_ASGN:
-			
+			if( !type_equal( lt, rt ) ){
+				printf( "type error: cannot assign " );
+				type_print( rt );
+				printf( " (" );
+				expr_print( e->right );
+				printf( ") to " );
+				type_print( lt );
+				printf( " (" );
+				expr_print( e->left );
+				printf( ")\n" );
+			}
 			return type_copy( lt );
 		case EXPR_OR:
 		case EXPR_AND:
