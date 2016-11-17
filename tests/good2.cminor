@@ -1,0 +1,5 @@
+// test some declarations
+i:integer = 5;
+b:boolean = true;
+c:char = 'c';
+s:string = "fun times";
