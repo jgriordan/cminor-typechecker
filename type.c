@@ -38,10 +38,11 @@ void type_print( struct type* t ){
 }
 
 struct type* type_copy( struct type* t ){
+	if( !t ) return 0;
 	struct type* new_t = malloc( sizeof(*new_t) );
 	new_t->kind = t->kind;
-	new_t->params = t->params;
-	new_t->subtype = t->subtype;
+	new_t->params = param_list_copy( t->params );
+	new_t->subtype = type_copy( t->subtype );
 	new_t->size = t->size;
 	return new_t;
 }
@@ -60,8 +61,10 @@ int type_equal( struct type* a, struct type* b ){
 }
 
 void type_delete( struct type* t ){
+	if( !t ) return;
+	param_list_delete( t->params );
+	type_delete( t->subtype );
 	free( t );
-	t = 0;
 }
 
 void type_resolve( struct type* t ){

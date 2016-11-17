@@ -39,3 +39,20 @@ void param_list_resolve( struct param_list* p ){
 	param_list_resolve( p->next );
 	p->symbol = s;
 }
+
+struct param_list* param_list_copy( struct param_list* p ){
+	if( !p ) return 0;
+	struct param_list* new_p = malloc( sizeof(*new_p) );
+	new_p->name = p->name;
+	new_p->type = type_copy( p->type );
+	new_p->symbol = p->symbol;
+	new_p->next = param_list_copy( p->next );
+	return new_p;
+}
+
+void param_list_delete( struct param_list* p ){
+	if( !p ) return;
+	type_delete( p->type );
+	param_list_delete( p->next );
+	free( p );
+}
