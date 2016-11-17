@@ -50,8 +50,11 @@ int main( int argc, char* argv[] ){
 		scope_init();
 		resolve_failed = 0;
 		resolve_print = 0;
+		typecheck_failed = 0;
 		decl_resolve( parser_result );
 		if( resolve_failed ) return 1;
+		decl_typecheck( parser_result );
+		if( typecheck_failed ) return 1;
 	}
 
 	return 0;

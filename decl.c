@@ -57,6 +57,7 @@ void decl_resolve( struct decl* d ){
 
 void decl_typecheck( struct decl* d ){
 	struct type* expr_type;
+	if( !d ) return;
 	expr_type = expr_typecheck( d->value );
 	if( !type_equal( d->type, expr_type ) ){
 		printf( "type error: cannot assign " );
