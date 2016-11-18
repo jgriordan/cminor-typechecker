@@ -143,7 +143,7 @@ void stmt_typecheck( struct stmt* s ){
 			break;
 		case STMT_RETURN:
 			t = expr_typecheck( s->expr );
-			if( !type_equal( t, return_type ) ){
+			if( !type_equal( t, return_type ) && !(!t && return_type->kind == TYPE_VOID) ){
 				printf( "type error: return of " );
 				type_print( t );
 				printf( " (" );

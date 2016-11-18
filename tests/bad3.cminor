@@ -1,0 +1,10 @@
+// test mismatched function prototype
+
+fun:function boolean(s:string);
+
+i:array [6] array [2] integer;
+
+fun: function void(c:char) = {
+	print "this function should not compile", c;
+	return c == 'a';
+}

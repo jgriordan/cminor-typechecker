@@ -1,8 +1,11 @@
+// test some incorrect uses of operators
 // test unmatching return type
-// test 
+// the amount of error in these couple lines makes me laugh (or maybe that is the sleep deprivation)
+
 a: integer;
 f: function integer(b:integer) = {
-	a = b;
-	c: boolean = false;
+	a = b + 'c';
+	c: boolean = -false && "false" < true;
+	b = !(a ^ c);
 	return c;
 }

@@ -1,0 +1,13 @@
+// test mismatched types in array initialization list (this case was so much fun)
+// test too many array dereferences (this case was almost as much fun)
+// test wrong type assignment to array (this case was not quite as much fun)
+// this case should result in 5 type errors (would be 4 if order of b initialization list switched...)
+
+a:array [2] array [2] char = {{'a','b'},{2,'d'}};
+b: array [3] boolean = {1,true,false};
+
+f: function void(i:integer) ={
+	b[0] = i;
+	a[i][i] = 'a';
+	a[i][i][0] = 'b';
+}

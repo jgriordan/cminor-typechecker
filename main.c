@@ -54,15 +54,12 @@ int main( int argc, char* argv[] ){
 		typecheck_failed = 0;
 		decl_resolve( parser_result );
 		if( resolve_failed ){
-			printf( "name resolution failed with %d errors!\n", resolve_failed );
 			return 1;
 		}
 		decl_typecheck( parser_result );
 		if( typecheck_failed ){
-			printf( "typecheck failed with %d errors!\n", typecheck_failed );
 			return 1;
 		}
-		printf( "typecheck passed!\n" );
 	}
 
 	return 0;

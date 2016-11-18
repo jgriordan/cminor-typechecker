@@ -374,7 +374,7 @@ struct type* expr_typecheck( struct expr* e ){
 				type_print( rt );
 				printf( " (" );
 				expr_print( e->right );
-				printf( ") must be boolean\n" );
+				printf( "), must be boolean\n" );
 				typecheck_failed++;
 			}
 			result = type_create( TYPE_BOOLEAN, 0, 0, 0 );
@@ -385,7 +385,7 @@ struct type* expr_typecheck( struct expr* e ){
 				type_print( rt );
 				printf( " (" );
 				expr_print( e->right );
-				printf( ") must be integer\n" );
+				printf( "), must be integer\n" );
 				typecheck_failed++;
 			}
 			result = type_create( TYPE_INTEGER, 0, 0, 0 );

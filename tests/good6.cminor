@@ -1,0 +1,15 @@
+// test some operators
+
+c:char = 'c';
+d:char = 'd';
+
+main:function void(i:integer,j:integer,b:boolean) = {
+	i = i + j;
+	k:integer = i - j;
+	k = i / j;
+	l:integer = i % j;
+	l = -l ^ ( i++ * j );
+	k--;
+	b = l < k;
+	b2:boolean = b = !b && c == 'a' || c != d;
+}

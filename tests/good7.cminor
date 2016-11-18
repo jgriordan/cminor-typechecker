@@ -1,0 +1,22 @@
+// test some loops and if-else
+
+c:char = 'X';
+
+f:function void(j:integer,d:char) = {
+	i:integer;
+	for(i=0;i<j;i++){
+		k:integer;
+		for(k=j;k>i;k++){
+			if( k % 2 == 0 )
+				print c;
+			else
+				print d;
+		}
+		print "\n";
+	}
+}
+
+main: function void() = {
+	f(10,'O');
+	return;
+}
