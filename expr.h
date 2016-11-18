@@ -7,6 +7,7 @@
 extern int resolve_failed;
 extern int resolve_print;
 extern int typecheck_failed;
+extern int dup_message;
 
 typedef enum {
 	EXPR_ASGN,

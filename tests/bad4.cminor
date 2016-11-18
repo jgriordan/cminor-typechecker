@@ -5,6 +5,7 @@
 
 a:array [2] array [2] char = {{'a','b'},{2,'d'}};
 b: array [3] boolean = {1,true,false};
+c: array [2] array [2] char = {{'a','b'},{'c','d'}};
 
 f: function void(i:integer) ={
 	b[0] = i;

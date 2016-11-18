@@ -483,11 +483,13 @@ struct type* expr_typecheck( struct expr* e ){
 		case EXPR_PAREN:
 			result = type_copy( rt );
 			break;
-		case EXPR_AR_INIT:
+		case EXPR_AR_INIT:{
+			int count = 1;
+			struct expr* el;
 			if( e->left->kind == EXPR_LIST ){
 				struct type* t;
 				int match = 1;
-				struct expr* el = e->left;
+				el = e->left;
 				result = expr_typecheck( el->left );
 				while( el && el->left && match ){
 					t = expr_typecheck( el->left );
@@ -495,11 +497,12 @@ struct type* expr_typecheck( struct expr* e ){
 						match = 0;
 					type_delete( t );
 					el = el->right;
+					count++;
 				}
 				t = expr_typecheck( el );
 				if( !type_equal( result, t ) )
 					match = 0;
-				if( !match ){
+				if( !match && !dup_message ){
 					printf( "type error: inconsistent types in array initialization list " );
 					expr_print( e );
 					printf( "\n" );
@@ -507,9 +510,30 @@ struct type* expr_typecheck( struct expr* e ){
 				}
 			} else {
 				result = type_copy( lt );
+				// we already did internal typechecking on the right branch, we just need to get the count from and check the result type
+				el = e->left;
+				if( el && el->right ){
+					type_delete( rt );
+					dup_message = 1;
+					rt = expr_typecheck( el->right );
+					dup_message = 0;
+					if( !type_equal( lt, rt ) ){
+						printf( "type error: mismatched types in array list intialization- " );
+						type_print( lt );
+						printf( " and " );
+						type_print( rt );
+						printf( "\n" );
+						typecheck_failed++;
+					}
+				}
+				while( el && el->right ){
+					count ++;
+					el = el->right;
+				}
 			}
-			result = type_create( TYPE_ARRAY, 0, result, 0 );
+			result = type_create( TYPE_ARRAY, 0, result, expr_create_integer_literal( count ) );
 			break;
+		}
 		case EXPR_LIST:
 			break;
 	}

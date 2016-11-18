@@ -41,6 +41,18 @@ void scope_bind( const char* name, struct symbol* s ){
 			type_print( sym->type );
 			printf( "\"\n" );
 			resolve_failed++;
+			return;
+		}
+	} else {
+		sym = hash_table_lookup( current_scope->ht, name );
+		if( sym ){
+			printf( "resolve error: %s was previously declared as ", name );
+			type_print( sym->type );
+			printf( ", cannot redeclare as " );
+			type_print( s->type );
+			printf( "\n" );
+			resolve_failed++;
+			return;
 		}
 	}
 	hash_table_insert( current_scope->ht, name, s );

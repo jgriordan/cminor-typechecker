@@ -12,6 +12,7 @@ extern FILE* yyin;
 int resolve_failed;
 int resolve_print;
 int typecheck_failed;
+int dup_message = 0;
 struct type* return_type;
 
 int main( int argc, char* argv[] ){

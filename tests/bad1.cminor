@@ -1,7 +1,9 @@
 // test calling a function before its declaration
+// test redeclaring a variable
 
 main:function void() = {
 	c:char = f();
+	c:integer = 1;
 }
 
 f:function char() = {

@@ -53,7 +53,10 @@ int type_equal( struct type* a, struct type* b ){
 	if( a->kind == TYPE_BOOLEAN || a->kind == TYPE_CHARACTER || a->kind == TYPE_INTEGER || a->kind == TYPE_STRING || a->kind == TYPE_VOID )
 		return a->kind == b->kind;
 	else if( a->kind == TYPE_ARRAY && b->kind == TYPE_ARRAY )
-		return type_equal( a->subtype, b->subtype );
+		if( a->size && b->size )
+			return type_equal( a->subtype, b->subtype ) && a->size->literal_value == b->size->literal_value;
+		else
+			return type_equal( a->subtype, b->subtype );
 	else if( a->kind == TYPE_FUNCTION && b->kind == TYPE_FUNCTION )
 		return type_equal( a->subtype, b->subtype );
 	else
