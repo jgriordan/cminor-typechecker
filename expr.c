@@ -128,13 +128,16 @@ void expr_print( struct expr* e ){
 int expr_list_equal_param_list( struct expr* e, struct param_list* p ){
 	struct type* t;
 	if( p && e ){
-		if( e->left )
+		if( e->left && e->kind == EXPR_LIST )
 			t = expr_typecheck( e->left );
 		else
 			t = expr_typecheck( e );
 		if( type_equal( t, p->type ) ){
 			type_delete( t );
-			return expr_list_equal_param_list( e->right, p->next );
+			if( e->kind == EXPR_LIST )
+				return expr_list_equal_param_list( e->right, p->next );
+			else
+				return 1;
 		}
 		type_delete( t );
 		return 0;
@@ -435,7 +438,7 @@ struct type* expr_typecheck( struct expr* e ){
 			while( ex->right ){
 				ex = ex->right;
 				t = t->subtype;
-				if( !lt ){
+				if( !t ){
 					printf( "type error: trying to dereference array %s too many times\n", e->left->name );
 					typecheck_failed++;
 					result = type_copy( lt->subtype );
