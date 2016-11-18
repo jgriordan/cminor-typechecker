@@ -2,7 +2,7 @@
 #define EXPR_H
 
 #include "scope.h"
-#include "symbol.h"
+#include "param_list.h"
 
 extern int resolve_failed;
 extern int resolve_print;
@@ -63,6 +63,7 @@ struct expr* expr_create_character_literal( int c );
 struct expr* expr_create_string_literal( const char* str );
 
 void expr_print( struct expr* e );
+int expr_list_equal_param_list( struct expr* e, struct param_list* p );
 void expr_resolve( struct expr* e );
 struct type* expr_typecheck( struct expr* e );
 

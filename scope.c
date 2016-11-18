@@ -31,6 +31,18 @@ int scope_level(){
 }
 
 void scope_bind( const char* name, struct symbol* s ){
+	// check functions match prototypes
+	struct symbol* sym = scope_lookup( name );
+	if( s->type->kind == TYPE_FUNCTION ){
+		if( sym && ( !type_equal( sym->type, s->type ) || !param_list_equal_param_list( sym->type->params, s->type->params ) ) ){
+			printf( "resolve error: function %s with definition \"", name );
+			type_print( s->type );
+			printf( "\" does not match prototype \"" );
+			type_print( sym->type );
+			printf( "\"\n" );
+			resolve_failed++;
+		}
+	}
 	hash_table_insert( current_scope->ht, name, s );
 	if( s->kind == SYMBOL_LOCAL ){
 		current_scope->local_count++;

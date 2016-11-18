@@ -1,4 +1,5 @@
 // test unmatching return type
+// test 
 a: integer;
 f: function integer(b:integer) = {
 	a = b;

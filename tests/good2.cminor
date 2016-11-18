@@ -1,5 +1,20 @@
-// test some declarations
-i:integer = 5;
-b:boolean = true;
-c:char = 'c';
-s:string = "fun times";
+// test some function calls (with some nice infinite recursion)
+
+fint: function integer(c:char);
+fstring: function string(i:integer,b:boolean);
+
+main: function void() = {
+	i:integer = fint('b');
+	fstring(i,true);
+}
+
+fint: function integer(c:char) = {
+	c = 'a';
+	b:boolean = false && true;
+	s:string = fstring(0, b);
+	return fint(c);
+}
+
+fstring: function string(i:integer,b:boolean) = {
+	return "hello world";
+}

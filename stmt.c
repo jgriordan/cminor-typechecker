@@ -130,7 +130,7 @@ void stmt_typecheck( struct stmt* s ){
 				printf( ") in if must be boolean, not " );
 				type_print( t );
 				printf( "\n" );
-				typecheck_failed = 1;
+				typecheck_failed++;
 			}
 			stmt_typecheck( s->body );
 			stmt_typecheck( s->else_body );
@@ -148,10 +148,10 @@ void stmt_typecheck( struct stmt* s ){
 				type_print( t );
 				printf( " (" );
 				expr_print( s->expr );
-				printf( ") does not match the funciton return type of " );
+				printf( ") does not match the function return type of " );
 				type_print( return_type );
 				printf( "\n" );
-				typecheck_failed = 1;
+				typecheck_failed++;
 			}
 			break;
 		case STMT_BLOCK:

@@ -1,4 +1,5 @@
 // test a global, local, and param variable
+
 a: integer;
 f: function integer(b:integer) = {
 	a = b;

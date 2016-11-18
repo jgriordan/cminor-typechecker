@@ -1,0 +1,11 @@
+// some array fun
+
+a:array [2] array [2] integer = {{0,1},{2,3}};
+
+f: function integer(b:array [] integer) = {
+	i:integer;
+	for(i=0;i<2;i++){
+		a[i] = b;
+	}
+	return a[0][1];
+}

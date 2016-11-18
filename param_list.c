@@ -22,9 +22,9 @@ void param_list_print( struct param_list* p ){
 	}
 }
 
-int param_list_equal( struct param_list* a, struct param_list* b ){
+int param_list_equal_param_list( struct param_list* a, struct param_list* b ){
 	if( a && b )
-		return type_equal( a->type, b->type ) && param_list_equal( a->next, b->next );
+		return type_equal( a->type, b->type ) && param_list_equal_param_list( a->next, b->next );
 	else if( !a && !b )
 		return 1;
 	else

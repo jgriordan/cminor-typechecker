@@ -4,9 +4,10 @@
 #ifndef PARAM_LIST_H
 #define PARAM_LIST_H
 
-#include "symbol.h"
-#include "type.h"
 #include <stdio.h>
+
+#include "expr.h"
+#include "type.h"
 
 struct param_list {
 	char* name;
@@ -17,7 +18,7 @@ struct param_list {
 
 struct param_list* param_list_create( char* name, struct type* type, struct param_list* next );
 void param_list_print( struct param_list* p );
-int param_list_equal( struct param_list* a, struct param_list* b );
+int param_list_equal_param_list( struct param_list* a, struct param_list* b );
 void param_list_resolve( struct param_list* p );
 struct param_list* param_list_copy( struct param_list* p );
 void param_list_delete( struct param_list* p );

@@ -4,10 +4,8 @@
 #ifndef DECL_H
 #define DECL_H
 
-#include "expr.h"
-#include "scope.h"
+#include "param_list.h"
 #include "stmt.h"
-#include "type.h"
 #include <stdio.h>
 
 extern struct type* return_type;

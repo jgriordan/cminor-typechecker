@@ -68,7 +68,7 @@ void decl_typecheck( struct decl* d ){
 			printf( ") to " );
 			type_print( d->type );
 			printf( " (%s)\n", d->name );
-			typecheck_failed = 1;
+			typecheck_failed++;
 		}
 	}
 	if( d->code ){

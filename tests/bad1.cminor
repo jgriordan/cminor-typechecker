@@ -1,4 +1,12 @@
-// test an undeclared variable
-f:function void(c:char) = {
-	c = undefinedChar;
+// test calling a function before its declaration
+// test trying to use an out-of-scope variable
+
+main:function void() = {
+	c:char = f();
 }
+
+f:function char() = {
+	return 'c';
+}
+
+other:char = c;
