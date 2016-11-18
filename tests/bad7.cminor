@@ -1,0 +1,18 @@
+// test function calls of the wrong type in expressions
+
+i:integer = 1;
+b:boolean = true;
+
+fint:function integer() = {
+	return 42;
+}
+fbool:function boolean();
+
+f:function integer(j:integer) = {
+	b:boolean = true || fbool() && i < fint() && j > fbool();
+	j = i + fint() % 8675309 ^ fbool();
+}
+
+fbool:function boolean() = {
+	return true && false;
+}

@@ -1,0 +1,13 @@
+// test trying to use an out-of-scope variable
+
+i:integer = 0;
+
+main:function void() = {
+	j:integer = i; // valid
+	for(j=0;j<5;j++){
+		n:integer = j;
+	}
+	j = n - 1; // not vailid
+}
+
+k:integer = j; // not valid

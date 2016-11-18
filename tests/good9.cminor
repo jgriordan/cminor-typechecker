@@ -1,0 +1,9 @@
+// test calling a function with only a prototype (library example), plus some unnecessary math for no reason
+
+puts: function void ( s: string );
+
+main: function integer () = {
+	i:integer = 1800;
+	puts("hello world");
+	return i ^ 42 / -8675309;
+}

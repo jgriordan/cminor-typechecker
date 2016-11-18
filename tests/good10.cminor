@@ -1,0 +1,30 @@
+// I tested everything I wanted to, so here's the first 20 digits of the fibonacci sequence in c-minor
+
+i:integer;
+
+fib:function void(n:integer) = {
+	j1:integer = 0;
+	j2:integer = 1;
+	j:integer;
+	c:char = ',';
+
+	for(i=1;i<=n;i++){
+		if( i == 1 )
+			print j1, ", ";
+		else if( i == 2 )
+			print 1, c, " ";
+		else{
+			j = j1 + j2;
+			j1 = j2;
+			j2 = j;
+			if( i < n )
+				print j, ", ";
+			else
+				print j, '\n';
+		}
+	}
+}
+
+main:function integer() = {
+	fib(10+10);
+}

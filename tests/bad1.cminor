@@ -1,5 +1,4 @@
 // test calling a function before its declaration
-// test trying to use an out-of-scope variable
 
 main:function void() = {
 	c:char = f();
@@ -8,5 +7,3 @@ main:function void() = {
 f:function char() = {
 	return 'c';
 }
-
-other:char = c;

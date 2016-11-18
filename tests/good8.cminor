@@ -1,0 +1,28 @@
+// test some fun function calls and prints
+
+c:char = 'a';
+s:string;
+
+f2:function integer(d:boolean); // tricky, I know
+
+f1: function integer(d:char) = {
+	i:integer = 42;
+	print "hello world ", d, c == d, i % 12, "\n";
+	return f2( d != c );
+}
+
+f2: function integer(b:boolean) = {
+	s:string;
+	s = "goodbye world ";
+	if( !b ){
+		print s, true, 'b', c, 17 / 3 < 4, "\n";
+		return f1('a');
+	}else
+		return -42 + f1(c);
+}
+
+main:function void() = {
+	s = " to watch the world burn\n";
+	print "some compilers just like", s;
+	f1('a');
+}

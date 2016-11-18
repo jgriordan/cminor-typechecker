@@ -1,0 +1,11 @@
+// test some incorrect array assignments 
+
+a:array [2] boolean;
+
+f: function void(b:array [] array[] boolean) ={
+	b[0] = a; // correct
+	b = a; // incorrect
+	a = b; // still incorrect
+	a = true; // yet again incorect
+	c: array [2] char = a; // also still incorrect
+}

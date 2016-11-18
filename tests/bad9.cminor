@@ -1,0 +1,13 @@
+// test incorrect return types
+
+f:function string(i:integer) = {
+	return i;
+}
+
+g:function char() = {
+	return f(1);
+}
+
+h:function integer(i:integer) = {
+	return i < 5;
+}

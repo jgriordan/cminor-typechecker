@@ -10,9 +10,3 @@ printarray: function void ( a: array [] integer, size: integer ) = {
 		print a[i], "\n";
 	}
 }
-
-puts: function void ( s: string );
-
-main: function integer () = {
-	puts("hello world");
-}

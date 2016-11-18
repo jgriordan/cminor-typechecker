@@ -1,0 +1,25 @@
+// various type errors from the c-minor spec
+
+writechar: function void ( c:char );
+
+x: integer = 65;
+b: array [2] boolean = {true,false};
+
+main:function void() = {
+	y: char = 'A';
+
+	f:integer;
+
+	// error: x and y are of different types!
+	if(x>y)
+		f = 0;
+
+	// error: f is not a boolean!
+	if(f){
+		a: integer = 65;
+		writechar(a);  // error: a is not a char!
+	}
+
+	x: integer = 0;
+	x = b[0];      // error: x is not a boolean!
+}
